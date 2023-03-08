@@ -87,19 +87,7 @@ keys = [
     #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
-colors = ["#002b36", "#073642", "#586e75", "#657b83", "#839496", "#93a1a1", "#eee8d5", "#fdf6e3",
-          "#b58900", # Yellow
-          "#cb4b16", # Orange
-          "#dc322f", # Red
-          "#d33682", # Magenta
-          "#6c71c4", # Violet
-          "#268bd2", # Blue
-          "#2aa198", # Cyan
-          "#859900", # Green
-          "#000000"  # Black
-          ]
-
-colors2 = {
+colors = {
     "primaryColor": "#d79921",
     "secondaryColor": "#fabd2f",
 
@@ -134,21 +122,21 @@ dgroups_key_binder = simple_key_binder("mod4")
 layout_theme = {
     "border_width": 3,
     "margin": 0,
-    "border_focus": colors2["primaryBlueColor"],
-    "border_normal": colors[1]
+    "border_focus": colors["primaryBlueColor"],
+    "border_normal": colors["secondaryBlueColor"]
 }
 
 layouts = [
     layout.MonadTall(
         border_width=4,
         margin=10,
-        border_focus=colors2["primaryBlueColor"],
-        border_normal=colors[1]
+        border_focus=colors["primaryBlueColor"],
+        border_normal=colors["secondaryBlueColor"]
     ),
     layout.Stack(
         border_width=4,
-        border_focus=colors2["primaryBlueColor"],
-        border_normal=colors[1],
+        border_focus=colors["primaryBlueColor"],
+        border_normal=colors["secondaryBlueColor"]
     ),
     layout.Max(),
     layout.Floating(**layout_theme)
@@ -159,8 +147,8 @@ widget_defaults = dict(
     font="Jetbrains Mono Bold",
     fontsize = 17,
     padding = 2,
-    background = colors2["primaryBackgroundColor"],
-    foreground = colors2["textPrimaryColor"],
+    background = colors["primaryBackgroundColor"],
+    foreground = colors["textPrimaryColor"],
 )
 
 extension_defaults = widget_defaults.copy()
@@ -187,7 +175,7 @@ def right_space(background = 0):
     if (background == 1):
         return widget.Spacer(
             length = 15,
-            background = colors2["secondaryBackgroundColor"]
+            background = colors["secondaryBackgroundColor"]
         )
     else:
         return widget.Spacer(
@@ -211,22 +199,22 @@ screens = [
                     highlight_method = "line",
                     font = "Syne Mono",
                     fontsize = 22,
-                    highlight_color = colors2["secondaryBackgroundColor"],
-                    this_current_screen_border = colors[10], # border color
-                    active = colors2["textPrimaryColor"],
-                    inactive = colors2["textPrimaryColor"],
+                    highlight_color = colors["secondaryBackgroundColor"],
+                    this_current_screen_border = colors["primaryWarningColor"], # border color
+                    active = colors["textPrimaryColor"],
+                    inactive = colors["textPrimaryColor"],
                     borderwidth = 4,
                     disable_drag = True,
                     hide_unused = True,
-                    background = colors2["secondaryBackgroundColor"]
+                    background = colors["secondaryBackgroundColor"]
                 ),
-                right_arrow(colors2["primaryBackgroundColor"], colors2["secondaryBackgroundColor"]),
+                right_arrow(colors["primaryBackgroundColor"], colors["secondaryBackgroundColor"]),
                 widget.CurrentLayoutIcon(
                     padding = 3,
                     scale = 0.5
                 ),
                 widget.CurrentLayout(
-                    foreground = colors2["primaryColor"],
+                    foreground = colors["primaryColor"],
                     padding = 0,
                     font = "Source Code Pro Medium"
                 ),
@@ -239,77 +227,77 @@ screens = [
                     format = "%H:%M"
                 ),
                 widget.Spacer(),
-                left_arrow(colors2["primaryBackgroundColor"], colors2["secondaryBackgroundColor"]),
+                left_arrow(colors["primaryBackgroundColor"], colors["secondaryBackgroundColor"]),
                 widget.TextBox(
                     text = "<u>BTC</u>:",
-                    background = colors2["secondaryBackgroundColor"],
+                    background = colors["secondaryBackgroundColor"],
                 ),
                 widget.CryptoTicker(
                     crypto = "BTC",
                     format = "{symbol}{amount:.0f}",
-                    foreground = colors2["primaryColor"],
-                    background = colors2["secondaryBackgroundColor"],
+                    foreground = colors["primaryColor"],
+                    background = colors["secondaryBackgroundColor"],
                 ),
                 right_space(1),
-                left_arrow(colors2["secondaryBackgroundColor"], colors2["primaryBackgroundColor"]),
+                left_arrow(colors["secondaryBackgroundColor"], colors["primaryBackgroundColor"]),
                 widget.TextBox(
                     text = "<u>FREE</u>:",
                 ),
                 widget.DF(
-                    foreground = colors2["primaryColor"],
+                    foreground = colors["primaryColor"],
                     visible_on_warn = False,
-                    warn_color = colors2["primaryWarningColor"],
+                    warn_color = colors["primaryWarningColor"],
                     warn_space = 10,
                     format = "{uf}{m}"
                 ),
                 right_space(),
-                left_arrow(colors2["primaryBackgroundColor"], colors2["secondaryBackgroundColor"]),
+                left_arrow(colors["primaryBackgroundColor"], colors["secondaryBackgroundColor"]),
                 widget.TextBox(
                     text = "<u>CPU</u>:",
-                    background = colors2["secondaryBackgroundColor"],
+                    background = colors["secondaryBackgroundColor"],
                 ),
                 widget.CPU(
                     format = "{load_percent}%",
-                    foreground = colors2["primaryColor"],
-                    background = colors2["secondaryBackgroundColor"],
+                    foreground = colors["primaryColor"],
+                    background = colors["secondaryBackgroundColor"],
                 ),
                 right_space(1),
-                left_arrow(colors2["secondaryBackgroundColor"], colors2["primaryBackgroundColor"]),
+                left_arrow(colors["secondaryBackgroundColor"], colors["primaryBackgroundColor"]),
                 widget.TextBox(
                     text = "<u>RAM</u>:",
                 ),
                 widget.Memory(
                     format = "{MemUsed:.0f} Mb",
                     measure_mem = "M",
-                    foreground = colors2["primaryColor"],
+                    foreground = colors["primaryColor"],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btm')},
                 ),
                 right_space(),
-                left_arrow(colors2["primaryBackgroundColor"], colors2["secondaryBackgroundColor"]),
+                left_arrow(colors["primaryBackgroundColor"], colors["secondaryBackgroundColor"]),
                 widget.TextBox(
-                    background = colors2["secondaryBackgroundColor"],
+                    background = colors["secondaryBackgroundColor"],
                     text = "<u>TEMP</u>:",
                 ),
                 widget.OpenWeather(
                     location="Tyumen",
                     format = "{temp:.0f}º{units_temperature}",
-                    foreground = colors2["primaryColor"],
-                    background = colors2["secondaryBackgroundColor"],
+                    foreground = colors["primaryColor"],
+                    background = colors["secondaryBackgroundColor"],
                 ),
                 right_space(1),
-                left_arrow(colors2["secondaryBackgroundColor"], colors2["primaryBackgroundColor"]),
+                left_arrow(colors["secondaryBackgroundColor"], colors["primaryBackgroundColor"]),
                 widget.TextBox(
                     text = "<u>DATE</u>:",
                 ),
                 widget.Clock(
                     format = "%d:%m:%Y",
-                    foreground = colors2["primaryColor"],
+                    foreground = colors["primaryColor"],
                 ),
                 right_space(),
             ],
             38,
             border_width=[0, 0, 4, 0],  # Draw top and bottom borders
-            border_color = colors2["primaryBlueColor"],  # Borders are magenta
+            border_color = colors["primaryBlueColor"],  # Borders are magenta
         ),
     ),
 ]
@@ -328,8 +316,8 @@ cursor_warp = False
 
 floating_layout = layout.Floating(
     border_width=3,
-    border_focus=colors[3],
-    border_normal=colors[1],
+    border_focus=colors["primaryWarningColor"],
+    border_normal=colors["primaryWarningColor"],
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
