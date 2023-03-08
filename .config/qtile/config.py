@@ -192,7 +192,7 @@ screens = [
                     text = "",
                     fontsize = 38,
                     padding = 20,
-                    background = colors2["secondaryBackgroundColor"],
+                    background = colors["secondaryBackgroundColor"],
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)}
                 ),
                 widget.GroupBox(
