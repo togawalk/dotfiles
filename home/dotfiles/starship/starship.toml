@@ -1,0 +1,64 @@
+format = '''
+[┌─╼\[](bold black)$username[@](white bold dimmed)$hostname[\]](bold black)
+[└─╼](bold black)$directory[](bold black)$git_branch$git_commit$git_status$status$character'''
+
+# $nodejs$rust$package
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+[hostname]
+ssh_only = false
+format = '[$hostname](bold blue)'
+disabled = false
+
+[directory]
+format = '[\[](bold black)[$read_only]($read_only_style)[$path]($style)[\]](bold black)'
+style = 'bold blue'
+read_only = '󰉐 '
+read_only_style = 'blue dimmed'
+truncation_length = 6
+
+[username]
+style_user = 'white bold'
+style_root = 'red bold'
+format = '[$user]($style)'
+disabled = false 
+show_always = true
+
+[character]
+success_symbol = "[▶](bold black dimmed)"
+error_symbol = "[▶](bold red dimmed)"
+
+[git_branch]
+format = '[\[](bold black)[$branch(:$remote_branch)]($style)[\]](bold black)'
+style = 'bold white'
+
+[git_status]
+format = '( $all_status$ahead_behind [\]](bold black))'
+
+[status]
+style = 'red dimmed'
+format = '[\[$common_meaning$signal_name$maybe_int\]]($style)'
+map_symbol = true
+disabled = false
+
+[nodejs]
+format = '[\[](black)[$symbol($version)]($style)[\]](black)'
+symbol = "nodejs "
+version_format = 'v${major}'
+style = 'yellow dimmed'
+
+[rust]
+format = '[\[](black)[$symbol($version)]($style)[\]](black)'
+symbol = "rust"
+version_format = 'v${major}'
+style = '208 bold'
+
+[package]
+# format = '[\[](black)[📦 $version](black bold)[\]](black)'
+format = '[\[](black)[package: $version](black bold)[\]](black)'
+

@@ -1,0 +1,8 @@
+* {
+  background: hsl(240, 21%, 12%);
+  prompt: hsl(240, 21%, 15%);
+  border: hsl(240, 21%, 15%);
+  window-border: hsl(232, 97%, 85%);
+  text: hsl(226, 64%, 88%);
+  select: hsl(240, 21%, 15%);
+}
