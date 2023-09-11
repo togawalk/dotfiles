@@ -1,5 +1,5 @@
 format = '''
-[┌─╼\[](bold black)$username[@](white bold dimmed)$hostname[\]](bold black)
+[┌─╼\[](bold black)$username[@](white bold dimmed)$hostname[\]](bold black) $cmd_duration
 [└─╼](bold black)$directory[](bold black)$git_branch$git_commit$git_status$status$character'''
 
 # $nodejs$rust$package
@@ -9,6 +9,11 @@ scan_timeout = 10
 
 # Disable the blank line at the start of the prompt
 add_newline = false
+
+[cmd_duration]
+style =	'yellow'
+min_time = 2_000
+format = 'took [$duration]($style)'
 
 [hostname]
 ssh_only = false
