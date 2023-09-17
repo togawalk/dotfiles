@@ -1,9 +1,8 @@
 # theming.nix
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   catppuccin_name = "Catppuccin-Frappe-Standard-Blue-Dark";
   catppuccin = pkgs.catppuccin-gtk.override {
-    accents = [ "blue" ];
+    accents = ["blue"];
     size = "standard";
     variant = "frappe";
   };
@@ -27,10 +26,8 @@ in {
     };
   };
 
-  home.file.".config/gtk-4.0/gtk.css".source =
-    "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
-  home.file.".config/gtk-4.0/gtk-dark.css".source =
-    "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
+  home.file.".config/gtk-4.0/gtk.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk.css";
+  home.file.".config/gtk-4.0/gtk-dark.css".source = "${catppuccin}/share/themes/${catppuccin_name}/gtk-4.0/gtk-dark.css";
 
   home.file.".config/gtk-4.0/assets" = {
     recursive = true;

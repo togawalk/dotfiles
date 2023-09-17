@@ -1,6 +1,9 @@
-{ config, pkgs, ... }: {
-
-  imports = [ ./dotfiles ./theming.nix ];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./dotfiles ./theming.nix];
 
   home = {
     username = "togawalk";
@@ -16,7 +19,8 @@
         bbenoist.nix
         github.github-vscode-theme
         vscodevim.vim
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ]
+      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "minimal-icons";
           publisher = "jacobwgillespie";
@@ -99,7 +103,7 @@
     yt-dlp
     zathura # document viewer
     mpv
-    (rofi-wayland.override { plugins = [ rofi-emoji rofi-calc ]; })
+    (rofi-wayland.override {plugins = [rofi-emoji rofi-calc];})
 
     # mako
     p7zip
@@ -108,8 +112,7 @@
     telegram-desktop
   ];
 
-  home.file.".icons/default".source =
-    "${pkgs.capitaine-cursors-themed}/share/icons/Capitaine Cursors (Palenight) - White";
+  home.file.".icons/default".source = "${pkgs.capitaine-cursors-themed}/share/icons/Capitaine Cursors (Palenight) - White";
 
   xdg = {
     enable = true;
