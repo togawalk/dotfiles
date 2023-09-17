@@ -33,7 +33,16 @@
   };
 
   home.packages = with pkgs; [
-    nushell
+    alejandra
+    stylua
+    lua-language-server
+    fd
+    cmake
+    ripgrep
+    lazygit
+    gnumake
+    yarn
+    postman
     chromium
     imagemagick
     bat
@@ -73,7 +82,8 @@
     pavucontrol
     pipes
     psmisc # killall
-    python3
+    python311
+    python311Packages.pip
     qt5ct # Qt5 configuration tool
     slurp
     socat # useful for connecting applications inside separate boxes
