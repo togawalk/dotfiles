@@ -8,6 +8,19 @@ set -x PF_INFO "title os kernel wm uptime pkgs memory palette"
 alias ls='exa --group-directories-first --long -all' # my preferred listing
 alias lt='tree' # tree listing
 
+# git
+alias addup='git add -u'
+alias addall='git add .'
+alias branch='git branch'
+alias checkout='git checkout'
+alias clone='git clone'
+alias commit='git commit -m'
+alias fetch='git fetch'
+alias pull='git pull origin'
+alias push='git push origin'
+alias tag='git tag'
+alias newtag='git tag -a'
+
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
