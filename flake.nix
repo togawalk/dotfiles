@@ -9,30 +9,43 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
-    let
-      username = "togawalk";
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+  }: let
+    username = "togawalk";
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in {
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
         inherit system;
-  config.allowUnfree = true;
+        modules = [
+          ./hosts/desktop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users."${username}" = import ./home/home.nix;
+          }
+        ];
       };
-    in {
-
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-	  inherit system;
-	  modules = [
-	    ./hosts/desktop/configuration.nix
-	    home-manager.nixosModules.home-manager {
-              home-manager.useUserPackages = true;
-	      home-manager.useGlobalPkgs = true;
-	      home-manager.users."${username}" = import ./home/home.nix;
-
-            }
-	  ];
-        };
+      laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.users."${username}" = import ./home/home.nix;
+          }
+        ];
       };
-
+    };
   };
 }

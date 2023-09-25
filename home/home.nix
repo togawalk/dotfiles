@@ -37,6 +37,7 @@
   };
 
   home.packages = with pkgs; [
+    dconf
     alejandra
     stylua
     lua-language-server
