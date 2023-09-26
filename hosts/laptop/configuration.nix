@@ -5,15 +5,76 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  sekiroTheme = {
+    splash = sekiroTheme.package + "/sekiro_2560x1440.png";
+    package =
+      pkgs.fetchFromGitHub
+      {
+        owner = "togawalk";
+        repo = "sekiro-grub-theme";
+        rev = "8224a6187f762f17a098fd2b3a4b134f5b577bbc";
+        sha256 = "K43icoIZfP1NFAcGH0TKII/XjTuHkHKVEIiBjrliB6s=";
+      }
+      + "/Sekiro";
+  };
+  catppuccinTheme = {
+    splash = catppuccinTheme.package + "/background.png";
+    package =
+      pkgs.fetchFromGitHub
+      {
+        owner = "catppuccin";
+        repo = "grub";
+        rev = "803c5df0e83aba61668777bb96d90ab8f6847106";
+        sha256 = "sha256-/bSolCta8GCZ4lP0u5NVqYQ9Y3ZooYCNdTwORNvR7M0=";
+      }
+      + "/src/catppuccin-mocha-grub-theme";
+  };
+  virtuaverseTheme = {
+    splash = virtuaverseTheme.package + "/background.png";
+    package =
+      pkgs.fetchFromGitHub
+      {
+        owner = "Patato777";
+        repo = "dotfiles";
+        rev = "d6f96fa59327a936d335f01a7295815250f96ff7";
+        sha256 = "18mra67kd20bld5zxlvb89ik8psr2pj0v9iaizqpd485sywgqwiq";
+      }
+      + "/grub/themes/virtuaverse";
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  boot = {
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    initrd.systemd.enable = true;
+    plymouth.enable = true;
+    # kernelParams = ["quiet" "splash" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3" "boot.shell_on_fail"];
+    kernelParams = ["quiet" "splash"];
+    initrd.kernelModules = ["amdgpu"];
+
+    loader = {
+      timeout = -1;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        splashMode = "stretch";
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        gfxmodeEfi = "1920x1080";
+        useOSProber = true;
+
+        splashImage = catppuccinTheme.splash;
+        theme = catppuccinTheme.package;
+      };
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -44,18 +105,16 @@
   };
 
   # Configure keymap in X11
-  #services.xserver = {
+  # services.xserver = {
   #  layout = "us";
   #  xkbVariant = "";
-  #};
+  # };
+
   services.xserver = {
     enable = true;
     displayManager = {
       defaultSession = "none+awesome";
-      autoLogin = {
-        enable = true;
-        user = "togawalk";
-      };
+      startx.enable = true;
     };
 
     windowManager.awesome = {
@@ -84,12 +143,23 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     git
     wget
+    plymouth
+    ly
   ];
 
   fonts.fonts = with pkgs; [
     fira-code
     (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "UbuntuMono"];})
   ];
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      tumbler # generate thumbnails of images
+      xfconf
+      thunar-volman
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
