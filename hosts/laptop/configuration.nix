@@ -113,9 +113,12 @@ in {
   services.xserver = {
     enable = true;
     displayManager = {
-      defaultSession = "none+awesome";
+      # defaultSession = "none+awesome";
+      defaultSession = "none+qtile";
       startx.enable = true;
     };
+
+    windowManager.qtile.enable = true;
 
     windowManager.awesome = {
       enable = true;
@@ -144,7 +147,6 @@ in {
     git
     wget
     plymouth
-    ly
   ];
 
   fonts.fonts = with pkgs; [
