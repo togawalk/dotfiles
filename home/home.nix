@@ -37,6 +37,7 @@
   };
 
   home.packages = with pkgs; [
+    pfetch
     dconf
     alejandra
     stylua
