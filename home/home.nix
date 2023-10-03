@@ -37,6 +37,12 @@
   };
 
   home.packages = with pkgs; [
+    picom
+    nitrogen
+    dmenu
+    xsel
+    xclip
+
     pfetch
     dconf
     alejandra
