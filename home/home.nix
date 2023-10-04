@@ -43,6 +43,11 @@
     xsel
     xclip
 
+    wget
+    curl
+    nodePackages_latest.prisma
+    prisma-engines
+    openssl
     pfetch
     dconf
     alejandra
