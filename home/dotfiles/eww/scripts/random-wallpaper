@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+DIR=$HOME/Pictures/wallpapers
+
+if [[ $(pidof swww-daemon) ]]
+then
+  CURRENT_WALLPAPER=$(swww query | sed -n -e 's/^.*image: //p' | sed 's/"//g')
+  new=$(ls -1 ~/Pictures/wallpapers | sed "/$CURRENT_WALLPAPER/d" | sed '/.png\|.jpg/!d' | shuf -n 1)
+  swww img ${DIR}/${new} --transition-fps 80 --transition-step 10 &
+else
+  swww init
+fi

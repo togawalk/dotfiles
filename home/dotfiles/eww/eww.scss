@@ -1,0 +1,68 @@
+$base: hsl(240, 21%, 15%);
+$text: hsl(226, 64%, 88%);
+$surface1: hsl(234, 13%, 31%);
+$surface2: hsl(233, 12%, 39%);
+$blue: hsl(217, 92%, 76%);
+$green: hsl(115, 54%, 76%);
+
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+.bar {
+  font-family: "Fira Code";
+  font-size: 16px;
+  font-weight: 500;
+  color: $text;
+  background-color: $base;
+}
+
+.component {
+  background-color: $base;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button {
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: $surface1;
+}
+
+.icon {
+  padding: 0px 10px 0px 15px;
+  font-size: 20px;
+}
+
+.icon-block {
+  padding: 0px 0px 0px 10px;
+  font-size: 20px;
+}
+
+.p-5 {
+  padding: 0px 5px;
+}
+
+.workspace-entry {
+  padding: 0px 5px 0px 13px;
+}
+
+.empty-workspace {
+  color: $surface2;
+}
+
+.current-workspace {
+  background-color: $blue;
+  color: $base;
+}
+
+.current-workspace:hover {
+  background-color: $blue;
+}
+
+.nix {
+  color: $blue;
+
+}

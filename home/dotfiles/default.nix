@@ -35,6 +35,10 @@
     source = ./btop;
     recursive = true;
   };
+  xdg.configFile."eww" = {
+    source = ./eww;
+    recursive = true;
+  };
   xdg.configFile."rofi" = {
     source = ./rofi;
     recursive = true;
