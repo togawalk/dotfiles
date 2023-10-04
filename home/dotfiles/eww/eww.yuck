@@ -27,7 +27,7 @@
     (button :class "icon nix"
       (label :text " "))))
 
-(deflisten workspaces :initial "[]" "~/Desktop/hyprland-workspaces/target/debug/hyprland-workspaces")
+(deflisten workspaces :initial "[]" "hyprland-workspaces")
 (defwidget workspaces []
   (box :space-evenly false :class "component" :spacing 5
     (for workspace in workspaces
