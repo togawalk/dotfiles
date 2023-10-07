@@ -37,6 +37,7 @@
   };
 
   home.packages = with pkgs; [
+    nodePackages.prettier
     picom
     nitrogen
     dmenu
