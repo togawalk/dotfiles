@@ -1,7 +1,6 @@
 (defwidget bar []
-  (centerbox :orientation "h"
+  (box :orientation "h"
     (left)
-    (center)
     (right)))
 
 (defwidget left []
@@ -9,15 +8,16 @@
     ;; (nix)
     (workspaces)))
 
-(defwidget center []
-  (box :orientation "h"
-    (clock)))
+;; (defwidget center []
+;;   (box :orientation "h"
+;;     (clock)))
 
 (defwidget right []
   (box :orientation "h" :space-evenly false :spacing 10 :halign "end"
     (ram)
     (disk)
     (date)
+    (clock)
     (kb_layout)
     (utils)))
 
