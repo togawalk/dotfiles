@@ -75,6 +75,8 @@ in {
     };
   };
 
+  virtualisation.docker.enable = true;
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -146,7 +148,7 @@ in {
   users.users.togawalk = {
     isNormalUser = true;
     description = "togawalk";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [];
   };
 

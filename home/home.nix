@@ -58,6 +58,8 @@
 
   home.packages = with pkgs; [
     nodePackages.prettier
+    docker-compose
+    docker
     nitrogen
     dmenu
     xsel
