@@ -1,0 +1,7 @@
+(defpoll date :interval "10s" "date '+%a %d %b %R'")
+
+(defpoll battery :interval "10s"	"scripts/battery")
+
+(defpoll disk :interval "666s" "df -BG / | awk 'END { print $2 }'")
+
+(defpoll ram :interval "1s" "free -h | awk 'FNR == 2 { print $3 }'")

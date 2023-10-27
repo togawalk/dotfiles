@@ -1,85 +1,71 @@
+(include "pollers.yuck")
+(include "listeners.yuck")
+
 (defwidget bar []
-  (box :orientation "h"
+  (box :orientation "h" :class "bar"
     (left)
     (right)))
 
 (defwidget left []
   (box :orientation "h" :space-evenly false :spacing 10
-    ;; (nix)
+    (nix)
     (workspaces)))
-
-;; (defwidget center []
-;;   (box :orientation "h"
-;;     (clock)))
 
 (defwidget right []
   (box :orientation "h" :space-evenly false :spacing 10 :halign "end"
+    (battery)
     (ram)
     (disk)
     (date)
-    (clock)
     (kb_layout)
     (utils)))
 
 ;; LEFT
 (defwidget nix []
-  (box :class "component"
+  (box
     (button :class "icon nix"
       (label :text " "))))
 
-(deflisten workspaces :initial "[]" "hyprland-workspaces")
 (defwidget workspaces []
-  (box :space-evenly false :class "component" :spacing 5
+  (box :space-evenly false :class "component workspaces" :spacing 5
     (for workspace in workspaces
       (button :onclick "hyprctl dispatch workspace ${workspace.id}"
-        :class "workspace-entry icon ${workspace.active ? "current-workspace" : ""} ${workspace.windows > 0 ? "occupied-workspace" : "empty-workspace"}"
+        :class "workspace-entry ${workspace.active ? "current-workspace" : ""} ${workspace.windows > 0 ? "occupied-workspace" : "empty-workspace"}"
         (label :text "${workspace.name}")))))
 
-;; CENTER
-(defpoll clock :interval "10s" "date '+%R'")
-(defwidget clock []
-  (box :class "component"
-    (label :class "p-5" :text "󰣙 ${clock}")))
-
 ;; RIGHT
-(defpoll date :interval "10s" "date '+%a %d %b'")
-(defwidget date []
-  (box :class "component"
-    (label :class "p-5" :text "󰃮 ${date}")))
+(defwidget battery []
+  (box :class "component mauve"
+    (label :class "" :text "󰁿 ${battery}%")))
 
-(deflisten kb_layout :initial "en" "bash ~/.config/eww/scripts/get-current-kb_layout")
+(defwidget ram []
+  (box :class "component mauve"
+    (label :text "ram: ${ram}")))
+
+(defwidget disk []
+  (box :class "component mauve"
+    (label :text "free: ${disk}")))
+
+(defwidget date []
+  (box :class "component mauve"
+    (label :text "${date}")))
+
 (defwidget kb_layout []
-  (box :class "component"
-    (button :class "p-5" :onclick "hyprctl switchxkblayout hoksi-technology-durgod-taurus-k320 next"
+  (box :class "component mauve"
+    (button :onclick "hyprctl switchxkblayout at-translated-set-2-keyboard next"
       (label :text " ${kb_layout}"))))
 
 (defwidget utils []
-  (box :class "component" :spacing 5
-    ;; (button :class "icon record"
-    ;;   (label :text " "))
+  (box :spacing 10
     (button :class "icon screenshot" :onclick "./scripts/screenshot"
       (label :text "󰄄 "))
     (button :class "icon background-image" :onclick "./scripts/random-wallpaper"
-      (label :text "󰲍 "))
-    ;; (button :class "icon clipboard"
-    ;;   (label :text "󰋶 "))
-    ))
-
-(defpoll disk :interval "666s" "df -BG / | awk 'END { print $2 }'")
-(defwidget disk []
-  (box :class "component"
-    (label :class "p-5" :text "free: ${disk}")))
-
-
-(defpoll ram :interval "1s" "free -h | awk 'FNR == 2 { print $3 }'")
-(defwidget ram []
-  (box :class "component"
-    (label :class "p-5" :text "ram: ${ram}")))
+      (label :text "󰲍 "))))
 
 (defwindow bar
   :monitor 0
   :exclusive true
   :windowtype "dock"
-  :windowtype "normal"
-  :geometry (geometry :x "0%" :y "10" :width "2540" :anchor "top center")
+  :wm-ignore false
+  :geometry (geometry :x "0" :y "0" :width "100%" :anchor "top center")
   (bar))

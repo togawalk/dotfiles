@@ -1,0 +1,3 @@
+(deflisten workspaces :initial "[]" "hyprland-workspaces")
+
+(deflisten kb_layout :initial "en" "bash ~/.config/eww/scripts/get-current-kb_layout")
