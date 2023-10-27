@@ -4,6 +4,10 @@
   all: unset; // Unsets everything so you can style everything from scratch
 }
 
+button:hover {
+  background-color: $mantle;
+}
+
 .bar {
   font-family: $font;
   font-size: 16px;
@@ -22,11 +26,7 @@
 .icon {
   padding: 0px 10px 0px 15px;
   font-size: 20px;
-  transition: color 0.5s ease-out;
-}
-
-.icon:hover {
-  color: $blue;
+  border-radius: 20px;
 }
 
 .workspaces {
@@ -39,9 +39,6 @@
 
 .nix {
   color: $blue;
-  &:hover {
-    color: $sapphire;
-  }
 }
 
 .mauve {

@@ -23,7 +23,7 @@
 ;; LEFT
 (defwidget nix []
   (box
-    (button :class "icon nix"
+    (button :class "icon nix" :onclick "kitty -e btm"
       (label :text " "))))
 
 (defwidget workspaces []
