@@ -23,7 +23,7 @@
 ;; LEFT
 (defwidget nix []
   (box
-    (button :class "icon nix" :onclick "hyprctl dispatch exec kitty btm"
+    (button :class "icon text-blue" :onclick "hyprctl dispatch exec kitty btm"
       (label :text " "))))
 
 (defwidget workspaces []
@@ -35,23 +35,23 @@
 
 ;; RIGHT
 (defwidget battery []
-  (box :class "component ${battery-cappacity == "" ? "text-green" : "mauve "}"
+  (box :class "component ${battery-cappacity == "" ? "text-green" : "text-mauve "}"
     (label :class "" :text "${battery-cappacity} ${battery}%")))
 
 (defwidget ram []
-  (box :class "component mauve"
+  (box :class "component text-mauve"
     (label :text "ram: ${ram}")))
 
 (defwidget disk []
-  (box :class "component mauve"
+  (box :class "component text-mauve"
     (label :text "free: ${disk}")))
 
 (defwidget date []
-  (box :class "component mauve"
+  (box :class "component text-mauve"
     (label :text "${date}")))
 
 (defwidget kb_layout []
-  (box :class "component mauve"
+  (box :class "component ${kb_layout == "en" ? "text-mauve" : "text-peach"}"
     (button :onclick "hyprctl switchxkblayout at-translated-set-2-keyboard next"
       (label :text " ${kb_layout}"))))
 
