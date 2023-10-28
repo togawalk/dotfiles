@@ -1,6 +1,8 @@
 (defpoll date :interval "10s" "date '+%a %d %b %R'")
 
-(defpoll battery :interval "10s"	"scripts/battery")
+(defpoll battery :interval "1s"	"scripts/battery percent")
+
+(defpoll battery-cappacity	:interval "1s"	"scripts/battery icon")
 
 (defpoll disk :interval "666s" "df -BG / | awk 'END { print $2 }'")
 

@@ -23,7 +23,7 @@
 ;; LEFT
 (defwidget nix []
   (box
-    (button :class "icon nix" :onclick "kitty -e btm"
+    (button :class "icon nix" :onclick "hyprctl dispatch exec kitty btm"
       (label :text " "))))
 
 (defwidget workspaces []
@@ -35,8 +35,8 @@
 
 ;; RIGHT
 (defwidget battery []
-  (box :class "component mauve"
-    (label :class "" :text "󰁿 ${battery}%")))
+  (box :class "component ${battery-cappacity == "" ? "text-green" : "mauve "}"
+    (label :class "" :text "${battery-cappacity} ${battery}%")))
 
 (defwidget ram []
   (box :class "component mauve"
