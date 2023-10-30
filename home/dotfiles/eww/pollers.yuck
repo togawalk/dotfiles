@@ -7,3 +7,9 @@
 (defpoll disk :interval "666s" "df -BG / | awk 'END { print $2 }'")
 
 (defpoll ram :interval "1s" "free -h | awk 'FNR == 2 { print $3 }'")
+
+(defpoll weather-icon :interval "10m" "scripts/weather_info --icon")
+
+(defpoll weather-temp :interval "10m" "scripts/weather_info --temp")
+
+(defpoll weather-color :interval "10m" "scripts/weather_info --color")

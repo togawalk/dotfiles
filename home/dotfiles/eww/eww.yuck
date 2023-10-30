@@ -9,7 +9,8 @@
 (defwidget left []
   (box :orientation "h" :space-evenly false :spacing 10
     (nix)
-    (workspaces)))
+    (workspaces)
+    (weather)))
 
 (defwidget right []
   (box :orientation "h" :space-evenly false :spacing 10 :halign "end"
@@ -41,6 +42,11 @@
 (defwidget ram []
   (box :class "component text-mauve"
     (label :text "ram: ${ram}")))
+
+(defwidget weather []
+  (box :class "text-${weather-color}"
+    (label :text "${weather-icon}")
+    (label :text "${weather-temp}")))
 
 (defwidget disk []
   (box :class "component text-mauve"
