@@ -4,6 +4,9 @@ set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
 set -x PF_INFO "title os kernel wm uptime pkgs memory palette"
 set -x PF_INFO "title os kernel wm uptime pkgs memory palette"
 
+set EDITOR "nvim" # $EDITOR use Neovim in terminal
+set VISUAL "nvim" # $VISUAL use Neovim in GUI mode
+
 # Changing "ls" to "exa"
 alias ls='exa --group-directories-first --long -all' # my preferred listing
 alias lt='tree' # tree listing
