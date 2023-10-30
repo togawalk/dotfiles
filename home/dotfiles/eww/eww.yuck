@@ -1,5 +1,6 @@
 (include "pollers.yuck")
 (include "listeners.yuck")
+(include "config.yuck")
 
 (defwidget bar []
   (box :orientation "h" :class "bar"
@@ -37,6 +38,7 @@
 ;; RIGHT
 (defwidget battery []
   (box :class "component ${battery-cappacity == "" ? "text-green" : "text-mauve "}"
+       :visible notebook
     (label :class "" :text "${battery-cappacity} ${battery}%")))
 
 (defwidget ram []
