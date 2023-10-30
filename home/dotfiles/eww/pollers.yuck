@@ -8,8 +8,8 @@
 
 (defpoll ram :interval "1s" "free -h | awk 'FNR == 2 { print $3 }'")
 
-(defpoll weather-icon :interval "10m" "scripts/weather_info --icon")
+(defpoll weather-icon :interval "1m" "scripts/weather_info --icon")
 
-(defpoll weather-temp :interval "10m" "scripts/weather_info --temp")
+(defpoll weather-temp :interval "1m" "scripts/weather_info --temp")
 
-(defpoll weather-color :interval "10m" "scripts/weather_info --color")
+(defpoll weather-color :interval "1m" "scripts/weather_info --color")
