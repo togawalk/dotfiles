@@ -57,6 +57,7 @@
   };
 
   home.packages = with pkgs; [
+    brightnessctl
     nodePackages.prettier
     docker-compose
     docker
