@@ -8,7 +8,7 @@ set EDITOR "nvim" # $EDITOR use Neovim in terminal
 set VISUAL "nvim" # $VISUAL use Neovim in GUI mode
 
 # Changing "ls" to "exa"
-alias ls='exa --group-directories-first --long -all' # my preferred listing
+alias ls='exa --group-directories-first --long -all --git --no-permissions --header' # my preferred listing
 alias lt='tree' # tree listing
 
 # git
