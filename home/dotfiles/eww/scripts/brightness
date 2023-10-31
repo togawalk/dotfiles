@@ -1,0 +1,29 @@
+#!/bin/sh
+
+function screen_level {
+  echo $(brightnessctl info | grep Current | awk '{print $4}' | tr '%' ' ' | tr '(' ' ' | tr ')' ' ')
+}
+
+function raise_screen {
+    brightnessctl set 5%+ -q
+    update_eww
+}
+
+function lower_screen {
+    brightnessctl set 5%- -q
+    update_eww
+}
+
+function update_eww {
+    eww update brightness="$(get)"
+}
+
+function get {
+  echo "{
+    \"screen\": { \"level\": \"$(screen_level)\", \"icon\": \"h\" }
+  }"
+}
+
+if [[ $1 == 'get' ]]; then get; fi
+if [[ $1 == 'up' ]]; then raise_screen; fi
+if [[ $1 == 'down' ]]; then lower_screen; fi

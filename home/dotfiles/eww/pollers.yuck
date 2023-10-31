@@ -13,3 +13,5 @@
 (defpoll weather-temp :interval "1m" "scripts/weather_info --temp")
 
 (defpoll weather-color :interval "1m" "scripts/weather_info --color")
+
+(defpoll brightness :interval "1s" :initial "{}" `scripts/brightness get`)
