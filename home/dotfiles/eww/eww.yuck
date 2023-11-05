@@ -16,6 +16,7 @@
 (defwidget right []
   (box :orientation "h" :space-evenly false :spacing 10 :halign "end"
     (brightness)
+    (wifi)
     (battery)
     (ram)
     (disk)
@@ -74,6 +75,10 @@
       (label :text "󰄄 "))
     (button :class "icon background-image" :onclick "./scripts/random-wallpaper"
       (label :text "󰲍 "))))
+
+(defwidget wifi []
+  (box :class "component text-mauve wifi"
+    (label :text "${wifi-icon}")))
 
 (defwindow bar
   :monitor 0

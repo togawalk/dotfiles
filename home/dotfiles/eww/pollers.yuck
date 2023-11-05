@@ -15,3 +15,7 @@
 (defpoll weather-color :interval "1m" "scripts/weather_info --color")
 
 (defpoll brightness :interval "1s" :initial "{}" `scripts/brightness get`)
+
+(defpoll wifi-icon :interval "1s" :initial "{}" `scripts/wifi --icon`)
+
+(defpoll wifi-name :interval "1s" :initial "{}" `scripts/wifi --essid`)

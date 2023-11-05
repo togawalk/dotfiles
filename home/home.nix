@@ -58,6 +58,7 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    wirelesstools
     nodePackages.prettier
     docker-compose
     docker
