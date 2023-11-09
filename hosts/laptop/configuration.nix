@@ -5,75 +5,12 @@
   config,
   pkgs,
   ...
-}: let
-  sekiroTheme = {
-    splash = sekiroTheme.package + "/sekiro_2560x1440.png";
-    package =
-      pkgs.fetchFromGitHub
-      {
-        owner = "togawalk";
-        repo = "sekiro-grub-theme";
-        rev = "8224a6187f762f17a098fd2b3a4b134f5b577bbc";
-        sha256 = "K43icoIZfP1NFAcGH0TKII/XjTuHkHKVEIiBjrliB6s=";
-      }
-      + "/Sekiro";
-  };
-  catppuccinTheme = {
-    splash = catppuccinTheme.package + "/background.png";
-    package =
-      pkgs.fetchFromGitHub
-      {
-        owner = "catppuccin";
-        repo = "grub";
-        rev = "803c5df0e83aba61668777bb96d90ab8f6847106";
-        sha256 = "sha256-/bSolCta8GCZ4lP0u5NVqYQ9Y3ZooYCNdTwORNvR7M0=";
-      }
-      + "/src/catppuccin-mocha-grub-theme";
-  };
-  virtuaverseTheme = {
-    splash = virtuaverseTheme.package + "/background.png";
-    package =
-      pkgs.fetchFromGitHub
-      {
-        owner = "Patato777";
-        repo = "dotfiles";
-        rev = "d6f96fa59327a936d335f01a7295815250f96ff7";
-        sha256 = "18mra67kd20bld5zxlvb89ik8psr2pj0v9iaizqpd485sywgqwiq";
-      }
-      + "/grub/themes/virtuaverse";
-  };
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../shared
   ];
-
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  boot = {
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    initrd.systemd.enable = true;
-    plymouth.enable = true;
-    kernelParams = ["quiet" "splash"];
-    initrd.kernelModules = ["amdgpu"];
-
-    loader = {
-      timeout = -1;
-      efi.canTouchEfiVariables = true;
-      grub = {
-        splashMode = "stretch";
-        enable = true;
-        efiSupport = true;
-        device = "nodev";
-        gfxmodeEfi = "1920x1080";
-        useOSProber = true;
-
-        splashImage = catppuccinTheme.splash;
-        theme = catppuccinTheme.package;
-      };
-    };
-  };
 
   virtualisation.docker.enable = true;
 
@@ -87,36 +24,18 @@ in {
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Asia/Yekaterinburg";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
   # Configure keymap in X11
   # services.xserver = {
   #  layout = "us";
   #  xkbVariant = "";
   # };
 
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-    "0,15,30,45 * * * * togawalk /home/togawalk/dotfiles/home/dotfiles/eww/scripts/weather_info --getdata >>/tmp/cron-is-alive"
-    ];
-  };
+  # services.cron = {
+  #   enable = true;
+  #   systemCronJobs = [
+  #   "0,15,30,45 * * * * togawalk /home/togawalk/dotfiles/home/dotfiles/eww/scripts/weather_info --getdata >>/tmp/cron-is-alive"
+  #   ];
+  # };
 
   services.xserver = {
     enable = true;
@@ -173,10 +92,12 @@ in {
     plymouth
   ];
 
-  fonts.fonts = with pkgs; [
-    fira-code
-    (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "UbuntuMono"];})
-  ];
+  # fonts.fonts = with pkgs; [
+  #   noto-fonts-emoji
+  #   fira-code
+  #   cozette
+  #   (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "UbuntuMono" "AnonymousPro" "Mononoki"];})
+  # ];
 
   programs.thunar = {
     enable = true;
