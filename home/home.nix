@@ -67,6 +67,7 @@
 
   home.packages = with pkgs; [
     brightnessctl
+    alacritty
     wirelesstools
     nodePackages.prettier
     docker-compose
@@ -78,8 +79,6 @@
 
     wget
     curl
-    nodePackages_latest.prisma
-    prisma-engines
     openssl
     pfetch
     dconf
