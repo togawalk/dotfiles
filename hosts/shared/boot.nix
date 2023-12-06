@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   ...
@@ -58,7 +59,7 @@ in {
         enable = true;
         efiSupport = true;
         device = "nodev";
-        gfxmodeEfi = "1920x1080";
+        gfxmodeEfi = lib.mkDefault "1920x1080";
         useOSProber = true;
 
         splashImage = catppuccinTheme.splash;
