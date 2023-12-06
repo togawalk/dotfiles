@@ -10,6 +10,18 @@
     ./cron.nix
   ];
 
+  networking.hostName = "coma"; # Define your hostname.
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.togawalk = {
+    isNormalUser = true;
+    description = "togawalk";
+    extraGroups = ["networkmanager" "wheel" "docker"];
+    packages = with pkgs; [];
+  };
+
+  virtualisation.docker.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Yekaterinburg";
 
@@ -27,5 +39,26 @@
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    bc
+    jq
+    vim
+    git
+    wget
+    plymouth
+  ];
+
+  environment.sessionVariables = rec {
+    PATH = [
+      "/home/togawalk/.cargo/bin"
+    ];
+  };
+
 
 }

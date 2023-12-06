@@ -12,9 +12,6 @@
     ../shared
   ];
 
-  virtualisation.docker.enable = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -63,47 +60,12 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.togawalk = {
-    isNormalUser = true;
-    description = "togawalk";
-    extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    bc
-    jq
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
-    wget
-    plymouth
-  ];
-
-  # fonts.fonts = with pkgs; [
-  #   noto-fonts-emoji
-  #   fira-code
-  #   cozette
-  #   (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "UbuntuMono" "AnonymousPro" "Mononoki"];})
-  # ];
-
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
       tumbler # generate thumbnails of images
       xfconf
       thunar-volman
-    ];
-  };
-
-  environment.sessionVariables = rec {
-    PATH = [
-      "/home/togawalk/.cargo/bin"
     ];
   };
 

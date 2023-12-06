@@ -14,9 +14,6 @@
 
   boot.loader.grub.gfxmodeEfi = "2560x1440";
 
-  virtualisation.docker.enable = true;
-
-  networking.hostName = "coma"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -45,28 +42,6 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.togawalk = {
-    isNormalUser = true;
-    description = "togawalk";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    # fish
-    # starship
-    # unzip
-    # htop
-  ];
-
   environment.variables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
@@ -77,12 +52,6 @@
       tumbler # generate thumbnails of images
       xfconf
       thunar-volman
-    ];
-  };
-
-  environment.sessionVariables = rec {
-    PATH = [
-      "/home/togawalk/.cargo/bin"
     ];
   };
 
