@@ -2,10 +2,9 @@
 
 ## Collect data
 cache_dir="$HOME/.cache/eww/weather"
-cache_weather_stat=${cache_dir}/weather-stat
+cache_weather_desc=${cache_dir}/weather-desc
 cache_weather_degree=${cache_dir}/weather-degree
-cache_weather_color=${cache_dir}/weather-color
-cache_weather_icon=${cache_dir}/weather-icon
+cache_weather_feels_like=${cache_dir}/weather-feels-like
 
 ## Weather data
 KEY=""
@@ -23,91 +22,32 @@ get_weather_data() {
 	echo ${weather}
 
 	if [ ! -z "$weather" ]; then
-		weather_temp=`echo "$weather" | jq ".main.temp" | cut -d "." -f 1`
-		weather_icon_code=`echo "$weather" | jq -r ".weather[].icon" | head -1`
+		weather_temp=`echo "$weather" | jq ".main.temp"`
+		weather_temp=`$HOME/.local/bin/round ${weather_temp}`
+
+		weather_feels_like=`echo "$weather" | jq ".main.feels_like"`
+		weather_feels_like=`$HOME/.local/bin/round ${weather_feels_like}`
+
 		weather_description=`echo "$weather" | jq -r ".weather[].description" | head -1 | sed -e "s/\b\(.\)/\u\1/g"`
 
-		#Big long if statement of doom
-		if [ "$weather_icon_code" == "50d"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "50n"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "01d"  ]; then
-      weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "01n"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "02d"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "02n"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "03d"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "03n"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "04d"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "04n"  ]; then
-			weather_icon=" "
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "09d"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "09n"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "10d"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "10n"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "11d"  ]; then
-			weather_icon=""
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "11n"  ]; then
-			weather_icon=""
-			weather_color="yellow"
-		elif [ "$weather_icon_code" == "13d"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		elif [ "$weather_icon_code" == "13n"  ]; then
-			weather_icon=" "
-			weather_color="blue"
-		else 
-			weather_icon=" "
-			weather_color="blue"
-		fi
-		echo "$weather_icon" >  ${cache_weather_icon}
-		echo "$weather_description" > ${cache_weather_stat}
-		echo "$weather_temp""°C" > ${cache_weather_degree}
-		echo "$weather_color" > ${cache_weather_color}
+		echo "$weather_description" > ${cache_weather_desc}
+		echo "$weather_temp" > ${cache_weather_degree}
+		echo "$weather_feels_like" > ${cache_weather_feels_like}
 	else
-		echo "Weather Unavailable" > ${cache_weather_stat}
-		echo "󰢚 " > ${cache_weather_icon}
+		echo "Weather Unavailable" > ${cache_weather_desc}
 		echo "none" > ${cache_weather_degree}
-		echo "subtext0" > ${cache_weather_color}
+		echo "none" > ${cache_weather_feels_like}
 	fi
 }
 
 ## Execute
 if [[ "$1" == "--getdata" ]]; then
 	get_weather_data
-elif [[ "$1" == "--icon" ]]; then
-	cat ${cache_weather_icon}
 elif [[ "$1" == "--temp" ]]; then
 	cat ${cache_weather_degree}
-elif [[ "$1" == "--color" ]]; then
-	cat ${cache_weather_color}
-elif [[ "$1" == "--stat" ]]; then
-	cat ${cache_weather_stat}
+elif [[ "$1" == "--feels_like" ]]; then
+	cat ${cache_weather_feels_like}
+elif [[ "$1" == "--desc" ]]; then
+	cat ${cache_weather_desc}
 fi
 

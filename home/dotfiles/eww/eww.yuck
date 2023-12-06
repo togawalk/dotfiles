@@ -53,9 +53,8 @@
     (label :text "ram: ${ram}")))
 
 (defwidget weather []
-  (box :class "text-${weather-color}"
-    (label :text "${weather-icon}")
-    (label :text "${weather-temp}")))
+  (box :class "text-blue"
+    (label :text "${weather-temp}°")))
 
 (defwidget disk []
   (box :class "component text-mauve"

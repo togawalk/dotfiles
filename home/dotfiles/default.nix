@@ -43,6 +43,10 @@
     source = ./rofi;
     recursive = true;
   };
+  home.file.".local/bin" = {
+    source = ./bin;
+    recursive = true;
+  };
   home.file."/Pictures/backgrounds" = {
     source = ./backgrounds;
     recursive = true;

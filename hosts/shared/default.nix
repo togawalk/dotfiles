@@ -46,6 +46,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    python311
+    python311Packages.pip
     bc
     jq
     vim
@@ -57,6 +59,7 @@
   environment.sessionVariables = rec {
     PATH = [
       "/home/togawalk/.cargo/bin"
+      "/home/togawalk/.local/bin"
     ];
   };
 
