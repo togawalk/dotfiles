@@ -43,8 +43,8 @@
     source = ./rofi;
     recursive = true;
   };
-  home.file."/Pictures/wallpapers" = {
-    source = ./wallpapers;
+  home.file."/Pictures/backgrounds" = {
+    source = ./backgrounds;
     recursive = true;
   };
 }
