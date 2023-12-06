@@ -45,6 +45,7 @@
 
 (defwidget brightness []
   (box :class "component text-peach"
+       :visible notebook
     (label :class "" :text " ${brightness.screen.level}")))
 
 (defwidget ram []
@@ -78,6 +79,7 @@
 
 (defwidget wifi []
   (box :class "component text-mauve wifi"
+       :visible notebook
     (label :text "${wifi-icon}")))
 
 (defwindow bar
