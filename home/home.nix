@@ -66,6 +66,8 @@
   };
 
   home.packages = with pkgs; [
+    nitch
+    glow
     brightnessctl
     alacritty
     wirelesstools
