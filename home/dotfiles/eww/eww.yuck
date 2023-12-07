@@ -77,9 +77,9 @@
       (label :text "󰲍 "))))
 
 (defwidget wifi []
-  (box :class "component text-mauve wifi"
+  (box :class "component wifi ${wifi-status == "con" ? "text-green" : "text-red"}"
        :visible notebook
-    (label :text "${wifi-icon}")))
+    (label :text "${wifi-status}")))
 
 (defwindow bar
   :monitor 0

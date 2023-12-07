@@ -14,6 +14,6 @@
 
 (defpoll brightness :interval "1s" :initial "{}" `scripts/brightness get`)
 
-(defpoll wifi-icon :interval "1s" :initial "{}" `scripts/wifi --icon`)
+(defpoll wifi-status :interval "1s" :initial "{}" `scripts/wifi --status`)
 
 (defpoll wifi-name :interval "1s" :initial "{}" `scripts/wifi --essid`)
