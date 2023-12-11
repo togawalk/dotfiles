@@ -10,10 +10,12 @@
 
 (defpoll weather-temp :interval "1m" "scripts/weather_info --temp")
 
+(defpoll weather-feels-like :interval "1m" "scripts/weather_info --feels_like")
+
 (defpoll weather-color :interval "1m" "scripts/weather_info --color")
 
 (defpoll brightness :interval "1s" :initial "{}" `scripts/brightness get`)
 
-(defpoll wifi-status :interval "1s" :initial "{}" `scripts/wifi --status`)
+(defpoll wifi-icon :interval "1s" :initial "{}" `scripts/wifi --icon`)
 
 (defpoll wifi-name :interval "1s" :initial "{}" `scripts/wifi --essid`)

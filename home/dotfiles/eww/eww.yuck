@@ -53,8 +53,8 @@
     (label :text "ram: ${ram}")))
 
 (defwidget weather []
-  (box :class "text-blue"
-    (label :text "${weather-temp}°")))
+  (box :class "component text-blue"
+    (label :text " ${weather-temp}°")))
 
 (defwidget disk []
   (box :class "component text-mauve"
@@ -77,9 +77,9 @@
       (label :text "󰲍 "))))
 
 (defwidget wifi []
-  (box :class "component wifi ${wifi-status == "con" ? "text-green" : "text-red"}"
+  (box :class "component wifi text-green"
        :visible notebook
-    (label :text "${wifi-status}")))
+    (label :text "${wifi-icon}")))
 
 (defwindow bar
   :monitor 0
