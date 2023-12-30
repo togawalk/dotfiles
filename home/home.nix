@@ -66,6 +66,9 @@
   };
 
   home.packages = with pkgs; [
+    pre-commit
+    act
+    rar
     nitch
     glow
     brightnessctl
