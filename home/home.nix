@@ -66,8 +66,6 @@
   };
 
   home.packages = with pkgs; [
-    pre-commit
-    act
     rar
     nitch
     glow
@@ -96,8 +94,6 @@
     lazygit
     gnumake
     yarn
-    postman
-    chromium
     imagemagick
     bat
     bottom
@@ -154,12 +150,8 @@
     zathura # document viewer
     mpv
     (rofi-wayland.override {plugins = [rofi-emoji rofi-calc];})
-
-    # mako
     p7zip
     unzip
-    webcord
-    telegram-desktop
   ];
 
   home.file.".icons/default".source = "${pkgs.capitaine-cursors-themed}/share/icons/Capitaine Cursors (Palenight) - White";
